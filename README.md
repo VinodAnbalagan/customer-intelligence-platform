@@ -7,7 +7,6 @@
 
 **An end-to-end machine learning system for customer churn prediction with MLOps, explainability, and interactive business analytics.**
 
-**Live Demo:** [Customer Intelligence Platform on Streamlit](https://customer-intelligence-platform.streamlit.app)
 
 ---
 
