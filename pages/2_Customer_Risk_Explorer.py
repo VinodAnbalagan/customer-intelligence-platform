@@ -10,9 +10,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from pathlib import Path
 
-st.set_page_config(page_title="Customer Risk Explorer", page_icon="🔍", layout="wide")
+st.set_page_config(page_title="Customer Risk Explorer", page_icon="CRE", layout="wide")
 
-st.title("🔍 Customer Risk Explorer")
+st.title("Customer Risk Explorer")
 st.markdown("Browse customers by risk level and view individual explanations.")
 st.markdown("---")
 
@@ -89,7 +89,7 @@ def load_demo_customers():
 customers_df = load_demo_customers()
 
 # Sidebar filters
-st.sidebar.header("🔧 Filters")
+st.sidebar.header("Filters")
 
 # Segment filter
 segments = st.sidebar.multiselect(
@@ -122,7 +122,7 @@ filtered_df = customers_df[
 ]
 
 # Summary metrics
-st.markdown("### 📊 Filtered Results")
+st.markdown("### Filtered Results")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -163,7 +163,7 @@ def color_probability(val):
 
 
 # Display table
-st.markdown("### 📋 Customer List")
+st.markdown("### Customer List")
 
 # Sortable columns
 sort_by = st.selectbox(
@@ -185,9 +185,9 @@ display_cols = [
     'TopRiskFactor1', 'TopRiskFactor2'
 ]
 
-styled_df = sorted_df[display_cols].head(100).style.applymap(
+styled_df = sorted_df[display_cols].head(100).style.map(
     color_probability, subset=['ChurnProbability']
-).applymap(
+).map(
     color_segment, subset=['Segment']
 ).format({
     'ChurnProbability': '{:.1%}',
@@ -199,7 +199,7 @@ st.dataframe(styled_df, use_container_width=True, height=400)
 st.markdown("---")
 
 # Individual customer detail
-st.markdown("### 🔬 Individual Customer Analysis")
+st.markdown("### Individual Customer Analysis")
 
 selected_customer = st.selectbox(
     "Select a customer to view detailed explanation",
@@ -284,13 +284,13 @@ if selected_customer:
         st.plotly_chart(fig, use_container_width=True)
 
         # Recommendations
-        st.markdown("#### 💡 Recommended Actions")
+        st.markdown("#### Recommended Actions")
 
         if customer['Contract'] == 'Month-to-month':
-            st.success("✅ **Offer contract upgrade** - 1-year contract could reduce risk by ~30%")
+            st.success("**Offer contract upgrade** - 1-year contract could reduce risk by ~30%")
         if customer['TechSupport'] == 'No':
-            st.info("ℹ️ **Add Tech Support** - Customers with support churn 15% less")
+            st.info("**Add Tech Support** - Customers with support churn 15% less")
         if customer['OnlineSecurity'] == 'No':
-            st.info("ℹ️ **Add Online Security** - Improves customer stickiness")
+            st.info("**Add Online Security** - Improves customer stickiness")
         if customer['tenure'] < 12:
-            st.warning("⚠️ **New customer** - Prioritize early engagement")
+            st.warning("**New customer** - Prioritize early engagement")

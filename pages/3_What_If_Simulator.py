@@ -10,9 +10,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from pathlib import Path
 
-st.set_page_config(page_title="What-If Simulator", page_icon="🔮", layout="wide")
+st.set_page_config(page_title="What-If Simulator", page_icon="WIS", layout="wide")
 
-st.title("🔮 What-If Simulator")
+st.title("What-If Simulator")
 st.markdown(
     "Test how different interventions affect a customer's churn probability. "
     "Adjust the inputs and see the impact in real-time."
@@ -73,7 +73,7 @@ def calculate_churn_probability(features):
 col_input, col_result = st.columns([1, 1])
 
 with col_input:
-    st.markdown("### 📝 Customer Profile")
+    st.markdown("### Customer Profile")
 
     # Contract type (most impactful)
     contract = st.selectbox(
@@ -157,7 +157,7 @@ current_features = {
 current_prob = calculate_churn_probability(current_features)
 
 with col_result:
-    st.markdown("### 📊 Prediction Results")
+    st.markdown("### Prediction Results")
 
     # Main risk gauge
     fig = go.Figure(go.Indicator(
@@ -186,24 +186,24 @@ with col_result:
 
     # Risk segment
     if current_prob >= 0.8:
-        st.error("🚨 **CRITICAL RISK** - Immediate intervention required")
+        st.error("**CRITICAL RISK** - Immediate intervention required")
     elif current_prob >= 0.5:
-        st.warning("⚠️ **AT RISK** - Proactive retention recommended")
+        st.warning("**AT RISK** - Proactive retention recommended")
     elif current_prob >= 0.2:
-        st.info("📊 **MONITOR** - Light engagement suggested")
+        st.info("**MONITOR** - Light engagement suggested")
     else:
-        st.success("✅ **SAFE** - Low churn risk")
+        st.success("**SAFE** - Low churn risk")
 
 st.markdown("---")
 
 # What-if scenarios
-st.markdown("### 🎯 What-If Scenarios")
+st.markdown("### What-If Scenarios")
 st.markdown("See how specific changes would affect this customer's churn risk:")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("#### 📄 Contract Upgrade")
+    st.markdown("#### Contract Upgrade")
 
     # Calculate impact of contract changes
     for new_contract in ['Month-to-month', 'One year', 'Two year']:
@@ -223,7 +223,7 @@ with col1:
             )
 
 with col2:
-    st.markdown("#### 🛠️ Add Services")
+    st.markdown("#### Add Services")
 
     # Tech support impact
     test_features = current_features.copy()
@@ -237,7 +237,7 @@ with col2:
             unsafe_allow_html=True
         )
     else:
-        st.markdown("✅ Tech Support already active")
+        st.markdown("Tech Support already active")
 
     # Online security impact
     test_features = current_features.copy()
@@ -251,10 +251,10 @@ with col2:
             unsafe_allow_html=True
         )
     else:
-        st.markdown("✅ Online Security already active")
+        st.markdown("Online Security already active")
 
 with col3:
-    st.markdown("#### 💳 Payment Method")
+    st.markdown("#### Payment Method")
 
     # Auto-payment impact
     for pm in ['Credit card (automatic)', 'Bank transfer (automatic)']:
@@ -264,7 +264,7 @@ with col3:
         delta = (new_prob - current_prob) * 100
 
         if pm == payment_method:
-            st.markdown(f"✅ {pm} (current)")
+            st.markdown(f"{pm} (current)")
         else:
             color = "green" if delta < 0 else "red"
             st.markdown(
@@ -276,7 +276,7 @@ with col3:
 st.markdown("---")
 
 # Best intervention recommendation
-st.markdown("### 💡 Optimal Intervention")
+st.markdown("### Optimal Intervention")
 
 # Calculate best single intervention
 best_intervention = None

@@ -11,9 +11,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from pathlib import Path
 
-st.set_page_config(page_title="Model Performance", page_icon="📈", layout="wide")
+st.set_page_config(page_title="Model Performance", page_icon="MP", layout="wide")
 
-st.title("📈 Model Performance")
+st.title("Model Performance")
 st.markdown("Detailed evaluation metrics, curves, and model comparison.")
 st.markdown("---")
 
@@ -69,7 +69,7 @@ selected_model = st.sidebar.selectbox(
 )
 
 # Summary metrics
-st.markdown("### 📊 Performance Summary")
+st.markdown("### Performance Summary")
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 
@@ -94,7 +94,7 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("### 📈 ROC Curve")
+    st.markdown("### ROC Curve")
 
     # Generate demo ROC curve
     np.random.seed(42)
@@ -146,7 +146,7 @@ with col1:
     st.plotly_chart(fig, use_container_width=True)
 
 with col2:
-    st.markdown("### 📉 Precision-Recall Curve")
+    st.markdown("### Precision-Recall Curve")
 
     fig = go.Figure()
 
@@ -193,7 +193,7 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("### 🎯 Confusion Matrix")
+    st.markdown("### Confusion Matrix")
 
     threshold = st.slider(
         "Prediction Threshold",
@@ -253,7 +253,7 @@ with col1:
     """)
 
 with col2:
-    st.markdown("### 📊 Calibration Curve")
+    st.markdown("### Calibration Curve")
 
     # Generate calibration data
     prob_bins = np.linspace(0.1, 0.9, 9)
@@ -294,7 +294,7 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
     st.info(
-        "💡 The calibration curve shows how well predicted probabilities match "
+        "The calibration curve shows how well predicted probabilities match "
         "actual outcomes. A well-calibrated model follows the diagonal line. "
         "Our model is reasonably calibrated, meaning predicted probabilities "
         "can be trusted for business decisions."
@@ -303,7 +303,7 @@ with col2:
 st.markdown("---")
 
 # Model Comparison Table
-st.markdown("### 📋 Model Comparison")
+st.markdown("### Model Comparison")
 
 comparison_data = []
 for model_name, model_metrics in metrics.items():
@@ -334,7 +334,7 @@ st.markdown("""
 st.markdown("---")
 
 # Feature Importance Comparison
-st.markdown("### 🎯 Feature Importance Comparison")
+st.markdown("### Feature Importance Comparison")
 
 importance_data = pd.DataFrame({
     'Feature': [
@@ -365,6 +365,6 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 st.success(
-    "✅ **Contract type** consistently ranks as the most important feature across "
+    "**Contract type** consistently ranks as the most important feature across "
     "all methods, validating its business significance for churn prediction."
 )

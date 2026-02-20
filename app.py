@@ -7,13 +7,13 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Customer Intelligence Platform",
-    page_icon="📊",
+    page_icon="CIP",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # Main page content
-st.title("📊 Customer Intelligence Platform")
+st.title("Customer Intelligence Platform")
 st.markdown("### AI-Powered Churn Prediction & Customer Analytics")
 
 st.markdown("""
@@ -22,14 +22,14 @@ st.markdown("""
 Welcome to the **Customer Intelligence Platform**, an end-to-end machine learning system
 for predicting customer churn and enabling data-driven retention strategies.
 
-### 🎯 What This Platform Does
+### What This Platform Does
 
 - **Identifies at-risk customers** before they churn
 - **Quantifies business impact** of retention interventions
 - **Provides actionable insights** for customer success teams
 - **Enables "What-If" analysis** to optimize retention strategies
 
-### 📑 Navigate the Dashboard
+### Navigate the Dashboard
 
 Use the sidebar to explore different sections:
 
@@ -41,7 +41,7 @@ Use the sidebar to explore different sections:
 | **Model Performance** | ROC curves, confusion matrices, and calibration |
 | **Business Impact** | Cost analysis and ROI calculations |
 
-### 🔬 Technical Details
+### Technical Details
 
 - **Model:** XGBoost with class weighting for imbalanced data
 - **Dataset:** Telco Customer Churn (7,043 customers)

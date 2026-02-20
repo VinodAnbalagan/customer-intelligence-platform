@@ -10,14 +10,14 @@ import plotly.express as px
 import plotly.graph_objects as go
 from pathlib import Path
 
-st.set_page_config(page_title="Business Impact", page_icon="💰", layout="wide")
+st.set_page_config(page_title="Business Impact", page_icon="BI", layout="wide")
 
-st.title("💰 Business Impact Analysis")
+st.title("Business Impact Analysis")
 st.markdown("Translate model predictions into business value and ROI.")
 st.markdown("---")
 
 # Cost assumptions (editable)
-st.sidebar.header("💵 Cost Assumptions")
+st.sidebar.header("Cost Assumptions")
 st.sidebar.markdown("Adjust these values to match your business:")
 
 cost_of_churn = st.sidebar.number_input(
@@ -61,12 +61,12 @@ flagged_customers = int(expected_churners * model_recall / model_precision)
 true_positives = int(expected_churners * model_recall)
 false_positives = flagged_customers - true_positives
 
-st.markdown("### 📊 Scenario Analysis")
+st.markdown("### Scenario Analysis")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("#### ❌ No Model (Do Nothing)")
+    st.markdown("#### No Model (Do Nothing)")
 
     no_model_loss = expected_churners * cost_of_churn
 
@@ -87,7 +87,7 @@ with col1:
     st.error(f"**Net Impact:** -${no_model_loss:,}")
 
 with col2:
-    st.markdown("#### 📢 Blanket Campaign (Everyone)")
+    st.markdown("#### Blanket Campaign (Everyone)")
 
     blanket_retention_cost = test_customers * cost_of_retention
     blanket_retained = int(expected_churners * retention_success_rate)
@@ -115,7 +115,7 @@ with col2:
         st.warning(f"**Net Impact:** -${abs(blanket_net):,}")
 
 with col3:
-    st.markdown("#### 🎯 Targeted (Using Model)")
+    st.markdown("#### Targeted (Using Model)")
 
     targeted_retention_cost = flagged_customers * cost_of_retention
     targeted_retained = int(true_positives * retention_success_rate)
@@ -144,7 +144,7 @@ with col3:
 st.markdown("---")
 
 # Comparison chart
-st.markdown("### 📈 Strategy Comparison")
+st.markdown("### Strategy Comparison")
 
 comparison_data = pd.DataFrame({
     'Strategy': ['No Action', 'Blanket Campaign', 'Targeted (Model)'],
@@ -190,7 +190,7 @@ st.plotly_chart(fig, use_container_width=True)
 model_savings_vs_nothing = targeted_net - (-no_model_loss)
 model_savings_vs_blanket = targeted_net - blanket_net
 
-st.markdown("### 💵 ROI Summary")
+st.markdown("### ROI Summary")
 
 col1, col2, col3 = st.columns(3)
 
@@ -219,7 +219,7 @@ with col3:
 st.markdown("---")
 
 # Optimal Threshold Analysis
-st.markdown("### 🎯 Optimal Threshold Analysis")
+st.markdown("### Optimal Threshold Analysis")
 
 st.markdown(
     "Finding the right prediction threshold balances catching churners (recall) "
@@ -342,7 +342,7 @@ st.success(
 st.markdown("---")
 
 # Segment-level ROI
-st.markdown("### 📊 Segment-Level Analysis")
+st.markdown("### Segment-Level Analysis")
 
 segment_data = pd.DataFrame({
     'Segment': ['Critical', 'At Risk', 'Monitor', 'Safe'],
@@ -351,19 +351,19 @@ segment_data = pd.DataFrame({
     'Investment': [5000, 13000, 35000, 52700],
     'Expected Savings': [21250, 40300, 61250, 31620],
     'Net ROI': [16250, 27300, 26250, -21080],
-    'Recommend': ['✅ Yes', '✅ Yes', '✅ Yes', '❌ No']
+    'Recommend': ['Yes', 'Yes', 'Yes', 'No']
 })
 
 st.dataframe(segment_data, use_container_width=True, hide_index=True)
 
 st.info(
-    "💡 **Recommendation:** Focus retention efforts on Critical, At Risk, and Monitor "
+    "**Recommendation:** Focus retention efforts on Critical, At Risk, and Monitor "
     "segments. The Safe segment has negative ROI for intervention due to low base churn rate."
 )
 
 # Final recommendation
 st.markdown("---")
-st.markdown("### 🎯 Executive Recommendation")
+st.markdown("### Executive Recommendation")
 
 st.markdown(f"""
 Based on the analysis with current cost assumptions:

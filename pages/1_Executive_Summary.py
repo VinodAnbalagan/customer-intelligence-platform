@@ -15,9 +15,9 @@ import joblib
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-st.set_page_config(page_title="Executive Summary", page_icon="📈", layout="wide")
+st.set_page_config(page_title="Executive Summary", page_icon="ES", layout="wide")
 
-st.title("📈 Executive Summary")
+st.title("Executive Summary")
 st.markdown("---")
 
 
@@ -41,7 +41,7 @@ model, preprocessors, test_df, data_loaded = load_data()
 
 if not data_loaded:
     st.warning(
-        "⚠️ Model artifacts not found. Please run the training pipeline first.\n\n"
+        "Model artifacts not found. Please run the training pipeline first.\n\n"
         "```bash\n"
         "python -m src.models.train\n"
         "```"
@@ -80,7 +80,7 @@ else:
 st.markdown("---")
 
 # Charts section
-st.markdown("### 📊 Key Insights")
+st.markdown("### Key Insights")
 
 col1, col2 = st.columns(2)
 
@@ -111,7 +111,7 @@ with col1:
     st.plotly_chart(fig, use_container_width=True)
 
     st.info(
-        "💡 **Insight:** Month-to-month customers churn at 42.7% vs 2.8% "
+        "**Insight:** Month-to-month customers churn at 42.7% vs 2.8% "
         "for two-year contracts. Contract upgrades are a key retention lever."
     )
 
@@ -141,14 +141,14 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
     st.warning(
-        "⚠️ **Action Required:** 343 customers (4.9%) are in the Critical segment "
+        "**Action Required:** 343 customers (4.9%) are in the Critical segment "
         "and require immediate intervention."
     )
 
 st.markdown("---")
 
 # Top churn drivers
-st.markdown("### 🎯 Top Churn Drivers (SHAP Analysis)")
+st.markdown("### Top Churn Drivers (SHAP Analysis)")
 
 # Demo SHAP importance
 shap_data = pd.DataFrame({
@@ -187,24 +187,24 @@ st.markdown("""
 st.markdown("---")
 
 # Quick actions
-st.markdown("### 🚀 Quick Actions")
+st.markdown("### Quick Actions")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("#### 📋 View At-Risk Customers")
+    st.markdown("#### View At-Risk Customers")
     st.markdown("Explore the Customer Risk Explorer to see detailed risk profiles.")
-    if st.button("Go to Risk Explorer →", key="risk"):
+    if st.button("Go to Risk Explorer", key="risk"):
         st.switch_page("pages/2_Customer_Risk_Explorer.py")
 
 with col2:
-    st.markdown("#### 🔮 Run What-If Analysis")
+    st.markdown("#### Run What-If Analysis")
     st.markdown("Test how contract changes affect churn probability.")
-    if st.button("Go to Simulator →", key="sim"):
+    if st.button("Go to Simulator", key="sim"):
         st.switch_page("pages/3_What_If_Simulator.py")
 
 with col3:
-    st.markdown("#### 💰 View Business Impact")
+    st.markdown("#### View Business Impact")
     st.markdown("See ROI calculations and cost optimization.")
-    if st.button("Go to Business Impact →", key="biz"):
+    if st.button("Go to Business Impact", key="biz"):
         st.switch_page("pages/5_Business_Impact.py")
