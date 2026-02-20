@@ -98,8 +98,9 @@ Thumbs.db
 # Project specific
 data/raw/*.csv
 mlruns/
-models/*.pkl
-models/*.joblib
+# Note: model artifacts are tracked for Streamlit Cloud deployment
+# models/*.pkl
+# models/*.joblib
 reports/figures/**/*.png
 !reports/figures/.gitkeep
 *.log
